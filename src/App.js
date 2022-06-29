@@ -28,6 +28,7 @@ import TempStaffing from "./components/TempStaffing";
 import HrStatutoryComp from "./components/HrStatutoryComp";
 import Payroll from "./components/Payroll";
 import Clients from "./Admin/Clients";
+import Settings from "./Admin/Settings";
 function App(props) {
   const { currentUser } = useContext(AuthContext);
 
@@ -175,6 +176,16 @@ function App(props) {
                       element={
                         <RequireAuth>
                           <Clients clients={clients} />
+                        </RequireAuth>
+                      }
+                    />
+                  </Route>
+                  <Route exact path="/admin/settings">
+                    <Route
+                      index
+                      element={
+                        <RequireAuth>
+                          <Settings />
                         </RequireAuth>
                       }
                     />

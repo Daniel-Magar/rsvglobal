@@ -1,0 +1,15 @@
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.logout > div {
+  padding: 2px;
+}
+.lg-icon {
+  font-size: 18px;
+}
+.logout:hover {
+  color: black;
+}

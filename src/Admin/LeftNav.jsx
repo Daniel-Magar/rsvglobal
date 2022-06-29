@@ -5,6 +5,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import "../logout.css";
 
 const headerStyles = {
   padding: 18,
@@ -27,6 +28,23 @@ const iconStyles = {
 
 const LeftNav = () => {
   const [expand, setExpand] = React.useState(true);
+  const [error, setError] = useState(false);
+  const auth = getAuth();
+  const navigate = useNavigate();
+
+  const { dispatch } = useContext(AuthContext);
+  const handleLogout = (e) => {
+    e.preventDefault();
+    signOut(auth)
+      .then(() => {
+        console.log("loging out");
+        dispatch({ type: "LOGOUT", payload: null });
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(true);
+      });
+  };
   return (
     <>
       <Sidebar
@@ -74,21 +92,44 @@ const LeftNav = () => {
                   <span>Post Jobs</span>
                 </Link>
               </Nav.Item>
-              <Nav.Item className="nav-item" eventKey="3">
+              <Nav.Item className="nav-item" eventKey="4">
                 <Link to="/admin/clients">
                   <i className="bx bxs-business icn"></i>
                   <span>Clients</span>
                 </Link>
               </Nav.Item>
+              <Nav.Item className="nav-item" eventKey="4">
+                <Link to="/admin/settings">
+                  <img
+                    src="../settings.png"
+                    alt="settings"
+                    style={{ marginRight: "20px" }}
+                    width="20px"
+                  />
+                  <span>Settings</span>
+                </Link>
+              </Nav.Item>
+              <Nav.Item className="nav-item" eventKey="4">
+                <Link to="#">
+                  <Button onClick={handleLogout}>
+                    <div className="logout">
+                      <div>
+                        <i className="bx bx-log-out lg-icon"></i>
+                      </div>
+                      <div> Log out</div>
+                    </div>
+                  </Button>
+                </Link>
+              </Nav.Item>
             </Nav>
           </Sidenav.Body>
         </Sidenav>
-
+        {/* 
         <NavToggle
           className="r-nav-toggle"
           expand={expand}
           onChange={() => setExpand(!expand)}
-        />
+        /> */}
       </Sidebar>
     </>
   );
@@ -111,7 +152,7 @@ const NavToggle = ({ expand, onChange }) => {
         setError(true);
       });
   };
-  const { currentUser } = useContext(AuthContext);
+
   return (
     <Navbar appearance="subtle" className="nav-toggle">
       <Navbar.Body className="rnav">
@@ -123,7 +164,6 @@ const NavToggle = ({ expand, onChange }) => {
               // return <Cog style={iconStyles} />;
             }}
           >
-            <Dropdown.Item>Help</Dropdown.Item>
             <Dropdown.Item>Settings</Dropdown.Item>
             <Dropdown.Item>
               <Button onClick={handleLogout}>Log out</Button>

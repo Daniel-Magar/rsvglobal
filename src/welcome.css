@@ -1,0 +1,8 @@
+.welcome-flex {
+  display: flex;
+  align-items: center;
+  text-align: start;
+}
+.welcome-flex > div {
+  padding: 5px;
+}

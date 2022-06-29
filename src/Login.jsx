@@ -5,11 +5,15 @@ import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import UserBadgeIcon from "@rsuite/icons/UserBadge";
+import { useRef } from "react";
 
 const Login = () => {
   const [error, setError] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const emailRef = useRef();
+  const pwdRef = useRef();
 
   const [loggeduser, setLoggedUser] = useState("");
 
@@ -51,6 +55,7 @@ const Login = () => {
   //       setError(true);
   //     });
   // };
+
   return (
     <>
       <div className="lgcontainer">
@@ -80,6 +85,7 @@ const Login = () => {
               <button type="submit">
                 <i class="bx bx-log-in"></i>Login
               </button>
+
               {error && <span>Wrong email or password!</span>}
             </form>
           </div>

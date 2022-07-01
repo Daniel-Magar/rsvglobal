@@ -445,7 +445,7 @@ const ApplyJob = () => {
                         <i className="bx bx-file frm-i"></i>
                         Job Posted on:
                         {finalDate} | <i className="bx bx-calendar frm-i"></i>{" "}
-                        Notiece Period:
+                        Notice Period:
                         {selectedData.data.noticeperiod}
                       </span>
                     </div>

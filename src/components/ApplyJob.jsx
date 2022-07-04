@@ -452,7 +452,7 @@ const ApplyJob = () => {
                     <div class="info-grid-item">
                       <b>
                         <i className="bx bx-laptop frm-i"></i>Primary Skill
-                        Required:{" "}
+                        Required:
                       </b>
                       <span>
                         <div className="readmoreless">

@@ -72,6 +72,7 @@ const Login = () => {
             <form className="logform" onSubmit={handleLogin}>
               <input
                 type="email"
+                className="myinp"
                 placeholder="email"
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -79,6 +80,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="password"
+                className="myinp"
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
